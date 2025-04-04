@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config();
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./config/swagger.json');
+const config = require('./config/config');
 
 const corsMiddleware = require('./middleware/cors');
 
@@ -16,6 +18,8 @@ app.use(express.static('public'));
 app.use('/api/users', userRoutes);
 app.use('/api/tasks', taskRoutes);
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to the Task Management API' });
 });
@@ -30,7 +34,7 @@ app.use((req, res, next) => {
 
 app.use(errorHandler);
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(config.db.uri)
   .then(() => {
     console.log('Connected to MongoDB');
   })
@@ -38,7 +42,7 @@ mongoose.connect(process.env.MONGODB_URI)
     console.error('Error connecting to MongoDB:', error.message);
   });
 
-const PORT = process.env.PORT || 5000;
+const PORT = config.port;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT} in ${config.env} mode`);
 });

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const validator = require('validator');
+const config = require('../config/config');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -16,9 +17,9 @@ const userSchema = new mongoose.Schema({
         trim: true,
         lowercase: true,
         validate(value) {
-        if (!validator.isEmail(value)) {
-            throw new Error('Email is invalid');
-        }
+            if (!validator.isEmail(value)) {
+                throw new Error('Email is invalid');
+            }
         }
     },
     password: {
@@ -27,18 +28,18 @@ const userSchema = new mongoose.Schema({
         trim: true,
         minlength: 7,
         validate(value) {
-        if (value.toLowerCase().includes('password')) {
-            throw new Error('Password cannot contain "password"');
-        }
+            if (value.toLowerCase().includes('password')) {
+                throw new Error('Password cannot contain "password"');
+            }
         }
     },
     tokens: [{
         token: {
-        type: String,
-        required: true
+            type: String,
+            required: true
         }
     }]
-    }, {
+}, {
     timestamps: true
 });
 
@@ -54,7 +55,9 @@ userSchema.methods.toJSON = function () {
 
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
-    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
+    const token = jwt.sign({ _id: user._id.toString() }, config.jwt.secret, {
+        expiresIn: config.jwt.expiresIn
+    });
 
     user.tokens = user.tokens.concat({ token });
     await user.save();
