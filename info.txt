@@ -1,0 +1,4 @@
+mongodb+srv://andreicalutiu:<db_password>@cluster0.rmjcxa7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+andreicalutiu 
+86BFD3TASLqWZzts

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management App</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Task Management</h1>
+            <div id="user-info">
+                <div id="logged-out-view">
+                    <button id="show-login-btn">Login</button>
+                    <button id="show-register-btn">Register</button>
+                </div>
+                <div id="logged-in-view" class="hidden">
+                    <span id="username-display"></span>
+                    <button id="logout-btn">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Authentication Forms -->
+        <div id="auth-forms">
+            <div id="login-form" class="auth-form">
+                <h2>Login</h2>
+                <form id="login-form-element">
+                    <div class="form-group">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password:</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+
+            <div id="register-form" class="auth-form hidden">
+                <h2>Register</h2>
+                <form id="register-form-element">
+                    <div class="form-group">
+                        <label for="register-name">Name:</label>
+                        <input type="text" id="register-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email:</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password:</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    <button type="submit">Register</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Task Management Interface -->
+        <div id="task-management" class="hidden">
+            <div id="task-controls">
+                <button id="create-task-btn">Create New Task</button>
+                <div id="task-filters">
+                    <select id="status-filter">
+                        <option value="">All Statuses</option>
+                        <option value="pending">Pending</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    <select id="priority-filter">
+                        <option value="">All Priorities</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                    <select id="sort-by">
+                        <option value="createdAt:desc">Latest First</option>
+                        <option value="createdAt:asc">Oldest First</option>
+                        <option value="dueDate:asc">Due Date (Sooner First)</option>
+                        <option value="dueDate:desc">Due Date (Later First)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="task-form" class="hidden">
+                <h2 id="task-form-title">Create New Task</h2>
+                <form id="task-form-element">
+                    <input type="hidden" id="task-id">
+                    <div class="form-group">
+                        <label for="task-title">Title:</label>
+                        <input type="text" id="task-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-description">Description:</label>
+                        <textarea id="task-description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-due-date">Due Date:</label>
+                        <input type="date" id="task-due-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="task-priority">Priority:</label>
+                        <select id="task-priority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="task-status">Status:</label>
+                        <select id="task-status">
+                            <option value="pending" selected>Pending</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit">Save Task</button>
+                        <button type="button" id="cancel-task-btn">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="tasks-container">
+                <h2>Your Tasks</h2>
+                <div id="tasks-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification" class="notification hidden"></div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>
