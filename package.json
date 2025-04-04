@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --setupFiles dotenv/config"
   },
   "keywords": ["task", "management", "api", "rest", "node", "express", "mongodb"],
   "author": "Andrei-Nicolae Căluțiu",
@@ -17,9 +17,12 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.2",
+    "swagger-ui-express": "^5.0.0",
     "validator": "^13.15.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "jest": "^29.5.0",
+    "supertest": "^6.3.3"
   }
 }

@@ -1,4 +1,3 @@
-// DOM Elements
 const loggedOutView = document.getElementById('logged-out-view');
 const loggedInView = document.getElementById('logged-in-view');
 const usernameDisplay = document.getElementById('username-display');

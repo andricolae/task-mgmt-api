@@ -1,3 +1,4 @@
+
 # Task Management RESTful API
 
 A complete task management application with a Node.js RESTful API backend and a simple frontend. This project demonstrates how to build a RESTful API using Node.js, Express, and MongoDB.
@@ -109,7 +110,9 @@ task-management-api/
    ```
    npm run dev
    ```
-5. Open your browser and navigate to `http://localhost:5000`
+5. Open your browser and navigate to:
+   * Application: `http://localhost:5000`
+   * API Documentation: `http://localhost:5000/api-docs` `http://localhost:5000`
 
 ## Usage
 
